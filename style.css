@@ -73,6 +73,55 @@ body {
     }
 }
 
+/* White Decorative Particles */
+.bg-particles {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    pointer-events: none;
+    overflow: hidden;
+}
+
+.particle {
+    position: absolute;
+    background: rgba(255, 255, 255, 0.08);
+    border-radius: 50%;
+    animation: drift linear infinite;
+}
+
+.particle:nth-child(1) { width: 6px; height: 6px; top: 10%; left: 15%; animation-duration: 18s; }
+.particle:nth-child(2) { width: 4px; height: 4px; top: 25%; left: 80%; animation-duration: 22s; animation-delay: -3s; }
+.particle:nth-child(3) { width: 8px; height: 8px; top: 50%; left: 30%; animation-duration: 25s; animation-delay: -7s; }
+.particle:nth-child(4) { width: 3px; height: 3px; top: 70%; left: 60%; animation-duration: 20s; animation-delay: -2s; }
+.particle:nth-child(5) { width: 5px; height: 5px; top: 15%; left: 50%; animation-duration: 28s; animation-delay: -5s; }
+.particle:nth-child(6) { width: 7px; height: 7px; top: 85%; left: 20%; animation-duration: 15s; animation-delay: -8s; }
+.particle:nth-child(7) { width: 4px; height: 4px; top: 40%; left: 90%; animation-duration: 23s; animation-delay: -1s; }
+.particle:nth-child(8) { width: 6px; height: 6px; top: 60%; left: 10%; animation-duration: 19s; animation-delay: -4s; }
+.particle:nth-child(9) { width: 3px; height: 3px; top: 5%; left: 70%; animation-duration: 26s; animation-delay: -6s; }
+.particle:nth-child(10) { width: 5px; height: 5px; top: 90%; left: 45%; animation-duration: 21s; animation-delay: -9s; }
+.particle:nth-child(11) { width: 4px; height: 4px; top: 35%; left: 5%; animation-duration: 24s; animation-delay: -11s; }
+.particle:nth-child(12) { width: 7px; height: 7px; top: 75%; left: 75%; animation-duration: 17s; animation-delay: -3s; }
+
+@keyframes drift {
+    0% {
+        transform: translateY(0) translateX(0);
+        opacity: 0;
+    }
+    10% {
+        opacity: 1;
+    }
+    90% {
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(-120vh) translateX(30px);
+        opacity: 0;
+    }
+}
+
 /* Glassmorphism Classes */
 .glass-panel,
 .glass-header,
@@ -209,6 +258,11 @@ body {
     visibility: hidden;
     transform: translateY(-15px);
     transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    background: rgba(60, 15, 90, 0.95);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.5);
 }
 
 .glass-dropdown.active {
@@ -412,7 +466,24 @@ body {
 }
 
 .service-card {
-    padding: 30px;
+    padding: 15px 10px;
+}
+
+/* Service Grid - always 2 columns */
+.service-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+}
+
+.service-grid .service-card {
+    padding: 16px 12px;
+    gap: 0;
+}
+
+.service-grid .service-card h4 {
+    font-size: 0.95rem;
+    font-weight: 500;
 }
 
 /* About Section */
@@ -420,12 +491,26 @@ body {
     margin-bottom: 40px;
 }
 
+.about-text {
+    padding: 30px 5px;
+    border-left: 3px solid rgba(224, 170, 255, 0.4);
+    padding-left: 25px;
+}
+
 .about-text p {
     font-size: 1.1rem;
-    color: var(--color-white);
+    color: var(--color-text-mut);
     margin-bottom: 15px;
     line-height: 1.8;
     text-align: left;
+}
+
+.about-highlight {
+    color: var(--color-white) !important;
+    font-weight: 600;
+    font-size: 1.15rem !important;
+    font-style: italic;
+    margin-top: 10px;
 }
 
 .info-card {
@@ -623,19 +708,18 @@ body {
     }
 
     .logo-large {
-        font-size: 3.2rem;
+        font-size: 3.8rem;
     }
 
     .logo-large span {
-        font-size: 1.1rem;
-        letter-spacing: 8px;
+        font-size: 1.3rem;
+        letter-spacing: 10px;
     }
 
     .tagline {
         font-size: 1.3rem;
     }
 
-    .grid-4,
     .grid-6 {
         grid-template-columns: 1fr 1fr;
     }
@@ -651,6 +735,47 @@ body {
     .glass-btn {
         padding: 8px 16px;
         font-size: 0.9rem;
+    }
+
+    /* Compact department cards on mobile */
+    .dept-card {
+        padding: 15px 10px;
+        gap: 8px;
+    }
+
+    .dept-card i {
+        font-size: 1.8rem;
+        padding: 10px;
+    }
+
+    /* Compact feature cards on mobile */
+    .feature-card {
+        padding: 15px;
+        gap: 10px;
+        flex-direction: row;
+        text-align: left;
+    }
+
+    .feature-card i {
+        font-size: 1.6rem;
+        padding: 10px;
+    }
+
+    .grid-4 {
+        grid-template-columns: 1fr;
+        gap: 12px;
+    }
+
+    .service-grid {
+        gap: 10px;
+    }
+
+    .service-grid .service-card {
+        padding: 14px 10px;
+    }
+
+    .about-text {
+        padding: 20px 5px 20px 20px;
     }
 }
 
@@ -727,8 +852,8 @@ body {
 }
 
 @media (max-width: 450px) {
-    .grid-4, .grid-6 {
-        grid-template-columns: 1fr;
+    .grid-6 {
+        grid-template-columns: 1fr 1fr;
     }
     .header-right > .filled-btn {
         display: none;
@@ -739,5 +864,12 @@ body {
     }
     .logo a {
         font-size: 1.5rem;
+    }
+    .logo-large {
+        font-size: 3.2rem;
+    }
+    .logo-large span {
+        font-size: 1.1rem;
+        letter-spacing: 8px;
     }
 }
